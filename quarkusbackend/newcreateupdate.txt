@@ -1,0 +1,186 @@
+ public void createOrUpdateCountries(List<CountryDTO> countryDTOs){
+    for (CountryDTO countryDTO : countryDTOs) {
+    boolean countryExists = doesCountryExist(countryDTO.getCountryname());
+    Countries country;
+
+    if (countryExists) {
+        country = countryRepository.find("countryname", countryDTO.getCountryname()).firstResult();
+        updateCountry(country, countryDTO);
+    } else {
+        country = createCountry(countryDTO);
+    }
+
+    for (StateDTO stateDTO : countryDTO.getStates()) {
+        boolean stateExists = doesStateExist(stateDTO.getStatename());
+        States state;
+
+        if (stateExists) {
+            state = stateRepository.find("statename", stateDTO.getStatename()).firstResult();
+            updateState(state, stateDTO);
+        } else {
+            state = createState(stateDTO, country);
+        }
+
+        for (DistrictDTO districtDTO : stateDTO.getDistricts()) {
+            boolean districtExists = doesDistrictExist(districtDTO.getDistrictname());
+            Districts district;
+
+            if (districtExists) {
+                district = districtRepository.find("districtname", districtDTO.getDistrictname()).firstResult();
+                updateDistrict(district, districtDTO);
+            } else {
+                district = createDistrict(districtDTO, state);
+            }
+
+            for (PincodeDTO pincodeDTO : districtDTO.getPincodes()) {
+                boolean pincodeExists = doesPincodeExist(pincodeDTO.getPincode());
+                Pincodes pincode;
+
+                if (!pincodeExists) {
+                    pincode = pincodeRepository.find("pincode", pincodeDTO.getPincode()).firstResult();
+                    createPincode(pincodeDTO, district);
+                }
+            }
+        }
+    }
+}
+    }
+
+
+    public boolean doesCountryExist(String countryname) {
+        List<Countries> countryName = countryRepository.list("countryname", countryname);
+        return !countryName.isEmpty();
+    }
+
+    public boolean doesStateExist(String statename) {
+        List<States> stateName = stateRepository.list("statename", statename);
+        return !stateName.isEmpty();
+    }
+
+    public boolean doesDistrictExist(String districtname) {
+        List<Districts> districtName = districtRepository.list("districtname", districtname);
+        return !districtName.isEmpty();
+    }
+
+    public boolean doesPincodeExist(String pincode) {
+        List<Pincodes> pinCode = pincodeRepository.list("pincode", pincode);
+        return !pinCode.isEmpty();
+    }
+    
+    
+     // Method to update country
+     private void updateCountry(Countries country, CountryDTO countryDTO) {
+        country.setCountryname(countryDTO.getCountryname());
+        countryRepository.persist(country);
+    }
+
+    // Method to create country
+    private Countries createCountry(CountryDTO countryDTO) {
+        Countries country = new Countries();
+        country.setCountryname(countryDTO.getCountryname());
+        countryRepository.persist(country);
+        return country;
+    }
+
+    // Method to update state
+    private void updateState(States state, StateDTO stateDTO) {
+        state.setStatename(stateDTO.getStatename());
+        stateRepository.persist(state);
+    }
+
+    // Method to create state
+    private States createState(StateDTO stateDTO, Countries country) {
+        States state = new States();
+        state.setStatename(stateDTO.getStatename());
+        state.setCountries(country);
+        stateRepository.persist(state);
+        return state;
+    }
+
+    // Method to update district
+    private void updateDistrict(Districts district, DistrictDTO districtDTO) {
+        district.setDistrictname(districtDTO.getDistrictname());
+        districtRepository.persist(district);
+    }
+
+    // Method to create district
+    private Districts createDistrict(DistrictDTO districtDTO, States state) {
+        Districts district = new Districts();
+        district.setDistrictname(districtDTO.getDistrictname());
+        district.setStates(state);
+        districtRepository.persist(district);
+        return district;
+    }
+
+    // Method to create pincode
+    private void createPincode(PincodeDTO pincodeDTO, Districts district) {
+        Pincodes pincode = new Pincodes();
+        pincode.setPincode(pincodeDTO.getPincode());
+        pincode.setDistricts(district);
+        pincode.setCities(pincodeDTO.getCities());
+        pincodeRepository.persist(pincode);
+    }
+
+  // New Logic 
+
+  for (CountryDTO countryDTO : countryDTOs) {
+        Countries existingCountry = countryRepository.findByCountryname(countryDTO.getCountryname());
+        if (existingCountry != null) {
+            updateCountry(existingCountry, countryDTO);
+        } else {
+            existingCountry = createCountry(countryDTO);
+        }
+
+        for (StateDTO stateDTO : countryDTO.getStates()) {
+            States existingState = stateRepository.findByStatename(stateDTO.getStatename());
+            if (existingState != null) {
+                updateState(existingState, stateDTO);
+            } else {
+                existingState = createState(stateDTO, existingCountry);
+            }
+
+            for (DistrictDTO districtDTO : stateDTO.getDistricts()) {
+                Districts existingDistrict = districtRepository.findByDistrictname(districtDTO.getDistrictname());
+                if (existingDistrict != null) {
+                    updateDistrict(existingDistrict, districtDTO);
+                } else {
+                    existingDistrict = createDistrict(districtDTO, existingState);
+                }
+
+                for (PincodeDTO pincodeDTO : districtDTO.getPincodes()) {
+                    createPincode(pincodeDTO, existingDistrict);
+                }
+            }
+        }
+
+
+/// to grow to
+
+for (CountryDTO countryDTO : countryDTOs) {
+        Countries existingCountry = countryRepository.findByName(countryDTO.getCountryname());
+        if(existingCountry ==null){
+            Countries country = CountryMapper.toEntity(countryDTO);
+            countryRepository.persist(country);
+            for (StateDTO stateDTO : countryDTO.getStates()) {
+                States state = StateMapper.toEntity(stateDTO);
+                state.setCountries(country);
+                stateRepository.persist(state);
+
+                for (DistrictDTO districtDTO : stateDTO.getDistricts()) {
+                    Districts district = DistrictMapper.toEntity(districtDTO);
+                    district.setStates(state);
+                    districtRepository.persist(district);
+
+                    for (PincodeDTO pincodeDTO : districtDTO.getPincodes()) {
+                        Pincodes pincode = PincodeMapper.toEntity(pincodeDTO);
+                        pincode.setDistricts(district);
+                        pincodeRepository.persist(pincode);
+                    }
+                }
+            }
+        }
+        else{
+            updateCountryEntity(existingCountry, countryDTO);
+            countryRepository.persist(existingCountry);
+        }
+    }

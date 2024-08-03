@@ -1,0 +1,10 @@
+[
+    { "bloodgroup": "A+", "code": "A+" },
+    { "bloodgroup": "A-", "code": "A-" },
+    { "bloodgroup": "B+", "code": "B+" },
+    { "bloodgroup": "B-", "code": "B-" },
+    { "bloodgroup": "AB+", "code": "AB+" },
+    { "bloodgroup": "AB-", "code": "AB-" },
+    { "bloodgroup": "O+", "code": "O+" },
+    { "bloodgroup": "O-", "code": "O-" }
+]

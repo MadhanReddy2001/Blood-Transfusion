@@ -1,0 +1,13 @@
+<div class="card flex justify-content-center">
+    <div class="charts-section">
+        <h2 class="charts-heading">Blood Data</h2>
+    <div class="charts-container">
+      <div class="chart-container" *ngFor="let chart of charts">
+        <p-chart type="pie" [data]="chart.data" [options]="chart.options" class="chart-responsive"></p-chart>
+    </div>
+    </div>
+    </div>
+    <!-- <div class="blood-card">
+        
+    </div> -->
+</div>

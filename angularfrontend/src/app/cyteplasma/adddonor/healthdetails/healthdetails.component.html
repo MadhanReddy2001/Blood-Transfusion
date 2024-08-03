@@ -1,0 +1,117 @@
+<p-card>
+    <ng-template pTemplate="title">Health Details</ng-template>
+
+    <ng-template pTemplate="subtitle">Please Enter your health details</ng-template>
+
+    <ng-template pTemplate="content">
+
+            <div class="p-fluid">
+                <div class="card flex justify-content-center">
+                    <label for="anemia"><strong>Anemia:</strong></label>
+                    <p-dropdown
+                        field="label"
+                        [options]="options"
+                        [(ngModel)]="healthinformation.anemia"
+                        optionLabel="label"
+                        optionValue="value"
+                        [showClear]="true"
+                        (onChange)="onChangeAnemia($event)"
+                        placeholder="Select a Option"
+                        >
+                    </p-dropdown>
+                </div>
+                <br>
+                <div class="card flex justify-content-center">
+                    <label for="alcohol"><strong>Alcohol:</strong></label>
+                    <p-dropdown
+                    field="label"
+                    [options]="options"
+                    [(ngModel)]="healthinformation.alcohol"
+                    optionLabel="label"
+                    optionValue="value"
+                    [showClear]="true"
+                    (onChange)="onChangeAlcohol($event)"
+                    placeholder="Select a Option"
+                            >
+                        </p-dropdown>
+                </div>
+                <br>
+                <div class="card flex justify-content-center">
+                    <label for="bp"><strong>BP:</strong></label>
+                    <p-dropdown
+                    field="label"
+                    [options]="options"
+                    [(ngModel)]="healthinformation.bp"
+                    optionLabel="label"
+                    optionValue="value"
+                    [showClear]="true"
+                    (onChange)="onChangeBP($event)"
+                    placeholder="Select a Option"
+                        >
+                        </p-dropdown>
+                </div>
+                <br>
+                <div class="card flex justify-content-center">
+                    <label for="diabetic"><strong>Diabetics:</strong></label>
+                    <p-dropdown 
+                    field="label"
+                    [options]="options"
+                    [(ngModel)]="healthinformation.diabetic"
+                    optionLabel="label"
+                    optionValue="value"
+                    [showClear]="true"
+                    (onChange)="onChangeDiabetics($event)"
+                    placeholder="Select a Option"
+                    >
+                    </p-dropdown>
+                </div>
+                <br>
+                <div class="card flex justify-content-center">
+                    <label for="hiv"><strong>HIV:</strong></label>
+                    <p-dropdown
+                    field="label"
+                    [options]="options"
+                    [(ngModel)]="healthinformation.hiv"
+                    optionLabel="label"
+                    optionValue="value"
+                    [showClear]="true"
+                    (onChange)="onChangeHIV($event)"
+                    placeholder="Select a Option"
+                        >
+                        </p-dropdown>
+                </div>
+                <br>
+                <div class="card flex justify-content-center">
+                    <label for="medicaltreatment"><strong>Medicaltreatment:</strong></label>
+                    <p-dropdown
+                    field="label"
+                    [options]="options"
+                    [(ngModel)]="healthinformation.medicaltreatment"
+                    optionLabel="label"
+                    optionValue="value"
+                    [showClear]="true"
+                    (onChange)="onChangeMedicalTreatment($event)"
+                    placeholder="Select a Option"
+                        >
+                        </p-dropdown>
+                </div>
+                <br>
+                <div class="card flex justify-content-center">
+                    <label for="previousdonation"><strong>PreviousDonation:</strong></label>
+                    <p-dropdown 
+                    field="label"
+                    [options]="options"
+                    [(ngModel)]="healthinformation.previousdonation"
+                    optionLabel="label"
+                    optionValue="value"
+                    [showClear]="true"
+                    (onChange)="onChangePreviousDonation($event)"
+                    placeholder="Select a Option"
+                        >
+                        </p-dropdown>
+                </div>
+                <br>
+            </div>
+    </ng-template>
+
+</p-card>

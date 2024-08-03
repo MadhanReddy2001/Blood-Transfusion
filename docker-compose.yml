@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  angularfrontend:
+    build:
+      context: ./angularfrontend
+      dockerfile: Dockerfile.angularfrontend
+    ports:
+      - "4200:80"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - my-network
+
+  quarkusbackend:
+    build:
+      context: ./quarkusbackend
+      dockerfile: src/main/docker/Dockerfile.jvm
+    ports:
+      - "8082:8082"
+    environment:
+      - QUARKUS_PROFILE=prod
+    networks:
+      - my-network
+
+networks:
+  my-network:

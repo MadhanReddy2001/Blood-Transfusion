@@ -1,0 +1,74 @@
+<p-menubar [model]="menuItems">
+        <ng-template pTemplate="start">
+            <img src="assets/images/blood-donation.svg" class="img-responsive" alt="Blood Donation">
+        </ng-template>
+        <ng-template pTemplate="end">
+            <b>{{currentDateTime }}</b>
+        </ng-template>
+    </p-menubar>
+<div class="card">
+    <p-splitter
+        [style]="{ height: '80rem',backgroundColor: '#FFFFFF'}" 
+        [panelSizes]="[10, 80]"
+        [minSizes]="[10, 0]"
+        [gutterSize]="1"
+        styleClass="mb-5">
+            <ng-template pTemplate>
+                <div class="col flex align-items-center justify-content-center">
+                    <div class = "dock-window dock-advanced">
+                        <p-dock [model]="mainMenuDockItems" position="left">
+                            <ng-template pTemplate="item" let-item>
+                            <a>
+                                <img [src]="item.icon" alt="{{item.label}}" class="menu-icon-label" />
+                                <span class="menu-item-label">{{ item.label }}</span>
+                            </a>
+                            </ng-template>
+                        </p-dock>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template pTemplate>
+                <p-splitter
+                layout="vertical"
+                [panelSizes]="[30, 85]"
+                [style]="{backgroundColor:'#FFFFFF',borderColor: '#D32F2F'}"
+                >
+                    <ng-template pTemplate>
+                        <div style="flex-grow: 1;" class="flex align-items-center justify-content-center">
+                            <app-blooddata></app-blooddata>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate>
+                        <p-splitter
+                        [style]="{backgroundColor:'#FFFFFF'}"
+                        [panelSizes]="[20, 80]"
+                        >
+                            <ng-template pTemplate>
+                                <div *ngIf="showDonateBlood">
+                                    <div class="col flex align-items-center justify-content-center">
+                                    <app-adddonor></app-adddonor>
+                                    </div>
+                                </div>
+                                <div *ngIf="viewDonorDetails">
+                                    <div class="col flex align-items-center justify-content-center">
+                                    <app-viewdonor></app-viewdonor>
+                                    </div>
+                                </div>
+                                <div *ngIf="checkEligibilty">
+                                    <div class="col flex align-items-center justify-content-center">
+                                    <app-checkeligibility></app-checkeligibility>
+                                    </div>
+                                </div>
+                                <div *ngIf="isBloodRequested">
+                                    <div class="col flex align-items-center justify-content-center">
+                                    <app-bloodrequest></app-bloodrequest>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-splitter>
+                    </ng-template>
+                </p-splitter>
+            </ng-template>
+    </p-splitter>
+</div>
+<router-outlet></router-outlet>

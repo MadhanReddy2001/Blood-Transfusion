@@ -1,0 +1,12 @@
+# backend/src/main/docker/Dockerfile.jvm
+
+FROM ghcr.io/graalvm/graalvm-ce:21.3.0 AS builder
+
+WORKDIR /app
+COPY . .
+RUN ./mvnw clean package -Dquarkus.profile=prod
+
+FROM ghcr.io/graalvm/graalvm-ce:21.3.0
+COPY --from=builder /app/target/*-runner /deployments/application
+EXPOSE 8082
+ENTRYPOINT ["java", "-Dquarkus.profile=${QUARKUS_PROFILE:-prod}", "-jar", "/deployments/application"]

@@ -1,0 +1,96 @@
+<p-card class="stepsdemo-content">
+    <ng-template pTemplate="title">Confirmation</ng-template>
+
+    <ng-template pTemplate="subtitle">Please check all the details</ng-template>
+    
+    <ng-template pTemplate="content">
+
+        <div class="field col-12">
+            <label for="donorname"><strong>DonorName:</strong></label>
+            {{confirminformation.donorname ? 
+                confirminformation.donorname: '-'}}
+        </div>
+        <br>
+        <div class="field col-12">
+            <label for="bloodgroup"><strong>BloodGroup:</strong></label>
+            {{confirminformation.bloodgroup ? 
+                confirminformation.bloodgroup: '-'}}
+        </div>
+        <br>
+        <div class="field col-12">
+            <label for="mobileno"><strong>MobileNo:</strong></label>
+            {{confirminformation.mobileno ? 
+                confirminformation.mobileno: '-'}}
+        </div>
+        <br>
+        <div class="field col-12">
+            <label for="pincode"><strong>PinCode:</strong></label>
+             {{confirminformation.pincode ? 
+                confirminformation.pincode: '-'}}
+        </div>
+        <br>
+        <div class="field col-12">
+            <label for="countryname"><strong>Country:</strong></label>
+            {{confirminformation.countryname ? 
+                confirminformation.countryname: '-'}}
+        </div>
+        <br>
+        <div class="field col-12">
+            <label for="statename"><strong>State:</strong></label>
+            {{confirminformation.statename ? confirminformation.statename: '-'}}
+        </div>
+        <br>
+        <div class="field col-12">
+            <label for="districtname"><strong>District:</strong></label>
+            {{confirminformation.districtname ? confirminformation.districtname: '-'}}
+        </div>
+        <br>
+        <div class="field col-12">
+            <label for="city"><strong>City:</strong></label>
+            {{confirminformation.city ? confirminformation.city: '-'}}
+        </div>
+        <br>
+        <div class="field col-12">
+            <label for="anemia"><strong>Anemia:</strong></label>
+            {{confirminformation.anemia ? confirminformation.anemia: '-'}}
+        </div>
+        <br>
+        <div class="field col-12">
+            <label for="alcohol"><strong>Alcohol:</strong></label>
+            {{confirminformation.alcohol ? confirminformation.alcohol: '-'}}
+        </div>
+        <br>
+        <div class="field col-12">
+            <label for="bp"><strong>BP:</strong></label>
+            {{confirminformation.bp ? confirminformation.bp: '-'}}
+        </div>
+        <br>
+        <div class="field col-12">
+            <label for="diabetic"><strong>Diabetic:</strong></label>
+             {{confirminformation.diabetic ? confirminformation.diabetic: '-'}}
+        </div>
+        <br>
+        <div class="field col-12">
+            <label for="hiv"><strong>HIV:</strong></label>
+            {{confirminformation.hiv ? confirminformation.hiv: '-'}}
+        </div>
+        <br>
+        <div class="field col-12">
+            <label for="medicaltreatment"><strong>Medicaltreatment:</strong></label>
+            {{confirminformation.medicaltreatment ? confirminformation.medicaltreatment: '-'}}
+        </div>
+        <br>
+        <div class="field col-12">
+            <label for="previousdonation"><strong>PreviousDonation:</strong></label>
+            {{confirminformation.previousdonation ? confirminformation.previousdonation: '-'}}
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <div class="grid grid-nogutter justify-content-between">
+            <p-button label="Complete" (onClick)="complete()" icon="pi pi-angle-right" iconPos="right" styleClass="p-button-success"></p-button>
+        </div>
+    </ng-template>
+</p-card>
+
+

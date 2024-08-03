@@ -1,0 +1,109 @@
+package cyteplasma.blood.donation.service;
+
+import cyteplasma.blood.donation.dto.CountryDTO;
+import cyteplasma.blood.donation.mapper.CountryMapper;
+import cyteplasma.blood.donation.model.Countries;
+import cyteplasma.blood.donation.repository.CountryRepository;
+import cyteplasma.blood.donation.model.States;
+import cyteplasma.blood.donation.model.Districts;
+import cyteplasma.blood.donation.model.Pincodes;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@ApplicationScoped
+public class CountryService {
+
+    @Inject
+    CountryRepository countryRepository;
+
+    @Transactional
+    public void saveCountries(List<CountryDTO> countryDTOs) {
+        for (CountryDTO countryDTO : countryDTOs) {
+            Countries country = CountryMapper.toEntity(countryDTO);
+            countryRepository.persist(country);
+        }
+    }
+
+    @Transactional
+    public void updateCountries(List<CountryDTO> countryDTOs) {
+        for (CountryDTO countryDTO : countryDTOs) {
+            Countries existingCountry = countryRepository.findById(countryDTO.getId());
+            if (existingCountry != null) {
+                updateCountryEntity(existingCountry, countryDTO);
+                countryRepository.persist(existingCountry);
+            } else {
+                Countries newCountry = CountryMapper.toEntity(countryDTO);
+                countryRepository.persist(newCountry);
+            }
+        }
+    }
+
+    private void updateCountryEntity(Countries existingCountry, CountryDTO countryDTO) {
+        existingCountry.setCountryname(countryDTO.getCountryname());
+        
+        // Update States
+        for (StateDTO stateDTO : countryDTO.getStates()) {
+            States existingState = findStateByName(existingCountry.getStates(), stateDTO.getStatename());
+            if (existingState != null) {
+                updateStateEntity(existingState, stateDTO);
+            } else {
+                States newState = StateMapper.toEntity(stateDTO);
+                existingCountry.getStates().add(newState);
+                newState.setCountries(existingCountry);
+            }
+        }
+    }
+
+    private void updateStateEntity(States existingState, StateDTO stateDTO) {
+        existingState.setStatename(stateDTO.getStatename());
+
+        // Update Districts
+        for (DistrictDTO districtDTO : stateDTO.getDistricts()) {
+            Districts existingDistrict = findDistrictByName(existingState.getDistricts(), districtDTO.getDistrictname());
+            if (existingDistrict != null) {
+                updateDistrictEntity(existingDistrict, districtDTO);
+            } else {
+                Districts newDistrict = DistrictMapper.toEntity(districtDTO);
+                existingState.getDistricts().add(newDistrict);
+                newDistrict.setStates(existingState);
+            }
+        }
+    }
+
+    private void updateDistrictEntity(Districts existingDistrict, DistrictDTO districtDTO) {
+        existingDistrict.setDistrictname(districtDTO.getDistrictname());
+
+        // Update Pincodes
+        for (PincodeDTO pincodeDTO : districtDTO.getPincodes()) {
+            Pincodes existingPincode = findPincodeByCode(existingDistrict.getPincodes(), pincodeDTO.getPincode());
+            if (existingPincode != null) {
+                updatePincodeEntity(existingPincode, pincodeDTO);
+            } else {
+                Pincodes newPincode = PincodeMapper.toEntity(pincodeDTO);
+                existingDistrict.getPincodes().add(newPincode);
+                newPincode.setDistricts(existingDistrict);
+            }
+        }
+    }
+
+    private void updatePincodeEntity(Pincodes existingPincode, PincodeDTO pincodeDTO) {
+        existingPincode.setPincode(pincodeDTO.getPincode());
+        existingPincode.setCities(pincodeDTO.getCities());
+    }
+
+    private States findStateByName(List<States> states, String name) {
+        return states.stream().filter(s -> s.getStatename().equals(name)).findFirst().orElse(null);
+    }
+
+    private Districts findDistrictByName(List<Districts> districts, String name) {
+        return districts.stream().filter(d -> d.getDistrictname().equals(name)).findFirst().orElse(null);
+    }
+
+    private Pincodes findPincodeByCode(List<Pincodes> pincodes, String code) {
+        return pincodes.stream().filter(p -> p.getPincode().equals(code)).findFirst().orElse(null);
+    }
+}

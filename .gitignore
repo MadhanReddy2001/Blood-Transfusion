@@ -1,0 +1,6 @@
+AngularFrontend/UI/node_modules
+AngularFrontend/${koduru.home}
+${koduru.home}
+QuarkusBackend/${koduru.home}
+target
+QuarkusBackend/target

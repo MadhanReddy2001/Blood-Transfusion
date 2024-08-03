@@ -1,0 +1,56 @@
+{
+    "countries": [
+      {
+        "countryname": "India",
+        "states": [
+          {
+            "statename": "AndhraPradesh",
+            "districts": [
+              {
+                "districtname": "Nellore",
+                "pincodes": [
+                  {
+                    "pincode": "524142",
+                    "cities": ["Akkarajuvari Kandriga","Bitragunta Loco shed","Bitragunta","Chemadala","Gowravaram","Kovurpalli","Mungamuru","Nagulavaram","Patha Bitragunta","Talluru","Zakkepalligudur"]
+                  },
+                  {
+                    "pincode": "524002",
+                    "cities": ["A.C.Nagar", "Allipuram", "Balajinagar", "Chinacherukuru", "Chintareddypalem", "Chintopu", "Gundlapalem", "Kodur", "Kotha Kodur", "Kothapalem", "Mahalakshmipuram", "Narukuru", "Navalakh Gardens", "Nawabpeta", "Nellimitta Kandriga", "Ntr Nagar", "Potlapudi", "South Amaluru", "Stonehousepet", "Venkannapalem"]
+                  }
+                ]
+              },
+              {
+                "districtname": "Krishna",
+                "pincodes": [
+                  {
+                    "pincode": "521227",
+                    "cities": ["Konduru", "Chavutapalli", "Cheemalapadu", "Gangapadu", "Gollamandala", "Kakarla", "Khambhampadu", "Koduru", "Polisettipadu", "Putrela", "Ramachandrapuram", "Repudi", "Rudravaram", "Vallampatla", "Vemireddipalle"]
+
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "statename": "TamilNadu",
+            "districts": [
+              {
+                "districtname": "chennai",
+                "pincodes": [
+                  {
+                    "pincode": "600032",
+                    "cities": ["Chennai Race Course", "Defence Officer's Colony", "Ekkaduthangal", "Guindy Industrial Estate"]
+                  },
+                  {
+                    "pincode": "600005",
+                    "cities": ["Chepauk", "Krishnampet", "Madras Presidency College", "Madras University", "Parthasarathy Koil", "Tiruvallikkeni"]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  

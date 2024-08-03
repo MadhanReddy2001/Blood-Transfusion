@@ -1,0 +1,147 @@
+<p-card >
+    <ng-template pTemplate="title"> Donor Information </ng-template>
+    <ng-template pTemplate="subtitle">Please enter details of donor</ng-template>
+    <ng-template pTemplate="content">
+        <div >
+        <div class="details" >
+            <label for="donorname"><strong>DonorName:</strong></label>
+        <input
+                #donorname="ngModel"
+                id="donorname"
+                type="text"
+                field="donorname"
+                required
+                pInputText
+                placeholder="DonorName"
+                [(ngModel)]="donorinformation.donorname"
+                [ngClass]="{'ng-dirty':(donorname.invalid && submitted) ||(donorname.dirty && donorname.invalid)}"
+                >
+                <small *ngIf="(donorname.invalid && submitted) ||(donorname.dirty && donorname.invalid)" class="p-error">Donor Name is required</small>
+        </div>
+        <br>
+        <div class="details">
+            <label for="bloodgroup"><strong>BloodGroup:</strong></label>
+            <p-autoComplete
+                id="bloodgroup"
+                field="bloodgroup"
+                placeholder="BloodGroup"
+                [suggestions]="filteredBloodGroups"
+                optionLabel="bloodgroup"
+                [(ngModel)]="donorinformation.bloodgroup"
+                (completeMethod)="completeMethodBloodGroup($event)"
+                (onSelect)="onSelectBloodGroup($event)"
+                />
+        </div>
+        <br>
+        <div class="details">
+            <label for="mobileno"><strong>MobileNo:</strong></label>
+            <input
+                #mobileno = "ngModel"
+                id="mobileno"
+                type="text"
+                field="mobileno"
+                required
+                pInputText
+                placeholder="Whatsapp no"
+                [(ngModel)]="donorinformation.mobileno"
+                [ngClass]="{'ng-dirty':(mobileno.invalid && submitted) || (mobileno.dirty && mobileno.invalid)}"
+            >
+               <small *ngIf="(mobileno.invalid && submitted) || (mobileno.dirty && mobileno.invalid)" class="p-error"> Please Enter Whatsupno</small>
+        </div>
+        <br>
+        <div class="details">
+            <label for="pincode"><strong>PinCode:</strong></label>
+            <p-autoComplete
+                #pincode= "ngModel"
+                id= "pincode"
+                type= "text"
+                field= "pincode"
+                placeholder= "pincode"
+                [autoHighlight]="true"
+                ariaLabel="pincode"
+                autocomplete="on"
+                [lazy]= "true"
+                [(ngModel)]= "donorinformation.pincode"
+                [suggestions]= "filteredpincode"
+                (completeMethod)= "getPincodes($event)"
+                (onSelect)="onSelectPincode($event)"
+                (ngModelChange)="ngModelChangePincodes($event)"
+                [ngClass]="{'ng-dirty':(pincode.invalid && submitted) || (pincode.dirty && pincode.invalid)}"
+            >
+            </p-autoComplete>
+            <small *ngIf="(pincode.invalid && submitted) || (pincode.dirty && pincode.invalid)" class="p-error"> Please Enter Pincode</small>
+        </div>
+        <br>
+        <div class="details">
+            <label for="countryname"><strong>Country:</strong></label>
+            <p-autoComplete
+                #countryname="ngModel"
+                id="countryname"
+                type="text"
+                field="countryname"
+                placeholder="countryname"
+                [autoHighlight]="true"
+                ariaLabel="countryname"
+                autocomplete="on"
+                [lazy]="true"
+                [(ngModel)]="donorinformation.countryname"
+                >
+            </p-autoComplete>
+        </div>
+    <br>
+    <div class="details" >
+        <label for="statename"><strong>State:</strong></label>
+        <p-autoComplete
+            #statename="ngModel"
+            id="statename"
+            type="text"
+            field="statename"
+            placeholder="statename"
+            [autoHighlight]="true"
+            ariaLabel="statename"
+            autocomplete="on"
+            [lazy]="true"
+            [(ngModel)]="donorinformation.statename"
+        ></p-autoComplete>
+    </div>
+    <br>
+    <div class="details">
+        <label for="districtname"><strong>District:</strong></label>
+        <p-autoComplete
+            #districtname="ngModel"
+            id="districtname"
+            type="text"
+            field="districtname"
+            placeholder="districtname"
+            [autoHighlight]="true"
+            ariaLabel="districtname"
+            autocomplete="on"
+            [lazy]="true"
+            [(ngModel)]="donorinformation.districtname"
+        >
+        </p-autoComplete>
+    </div>
+    <br>
+    <div class="details">
+        <label for="city"><strong>City:</strong></label>
+        <p-autoComplete
+            #city="ngModel"
+            id="city"
+            type="text"
+            field="cities"
+            placeholder="city"
+            [autoHighlight]="true"
+            ariaLabel="city"
+            autocomplete="on"
+            [lazy]="true"
+            [(ngModel)]="donorinformation.city"
+            [suggestions]="filteredcities"
+            (completeMethod)="getCities($event)"
+            (onSelect)="onSelectCity($event)"
+        ></p-autoComplete>
+    </div>
+    </div>
+    </ng-template>
+</p-card>
+
+

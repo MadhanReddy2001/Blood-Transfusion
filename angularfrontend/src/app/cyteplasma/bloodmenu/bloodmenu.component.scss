@@ -1,0 +1,123 @@
+
+:host ::ng-deep {
+
+    .p-dock-left {
+        top: 3rem !important;
+        left: .5rem;
+        width: 4rem;
+        height: auto;
+    }
+    .p-menubar {
+        padding-top: 0;
+        padding-bottom: 0;
+        border-radius: 0;
+        background-color:  #FFCDD2;
+        .p-menuitem:first-child {
+            font-weight: bold;
+            padding: 0 1rem;
+        }
+
+        .p-menuitem-link {
+            padding: 0.5rem .75rem;
+        }
+
+        .p-menubar-root-list > .p-menuitem > .p-menuitem-link {
+            padding: 0.5rem .75rem;
+
+            > .p-submenu-icon {
+                display: none;
+            }
+        }
+
+        .p-menubar-end {
+            span, i {
+                padding: 0 .75rem;
+            }
+        }
+
+        .dock-window {
+            width: 10px;
+            height: 450px;
+            position: relative;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    
+        .p-dock {
+            z-index: 1000;
+        }
+
+        .dock-advanced {
+            .p-dialog-mask,
+            .p-toast {
+                position: absolute;
+            }
+    
+            .p-dialog {
+                .p-dialog-header {
+                    padding: .2rem;
+                }
+    
+                .p-dialog-content {
+                    padding: 0;
+                }
+    
+                p {
+                    margin-top: 0;
+                }
+            }
+    
+            .p-toast {
+                top: 20px;
+            }
+        }
+    
+        
+    }
+
+    .p-dock-item-current {
+        // transform: scale(1.75rem);
+        // z-index: 1 !important;
+    }
+
+    .p-splitter .p-splitter-gutter{
+        background: #FFCDD2;
+    }
+    .p-splitter .p-splitter-gutter .p-splitter-gutter-handle{
+        background: rebeccapurple;
+    }
+
+    .p-dock.p-dock-left .p-dock-item-current, .p-dock.p-dock-right .p-dock-item-current {
+        margin: 0.5rem 0;
+    }
+}
+
+.dark-tooltip {
+    .p-tooltip {
+        .p-tooltip-arrow {
+            border-top-color: var(--surface-900);
+        }
+
+        .p-tooltip-text {
+            background-color: var(--surface-900);
+        }
+    }
+}
+
+.img-responsive {
+    width: 2rem;
+    height: 2rem;
+}
+
+.menu-item-label {
+    width: 2px;
+    height: 2px;
+    font-size: small;
+}
+
+.menu-icon-label {
+    width: 2.2rem;
+    height: 1.5rem;
+}
+
+
