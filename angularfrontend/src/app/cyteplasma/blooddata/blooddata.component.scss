@@ -1,7 +1,6 @@
 .card {
     display: flex;
     align-items: flex-start;
-    padding: 1.25rem;
     gap: 1rem;
     flex-wrap: wrap;
 }
@@ -9,7 +8,7 @@
 .charts-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 0.1rem;
 }
 
 .chart-container {

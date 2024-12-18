@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DonorDetails } from '../../donordetails.model';
 import { City, Country, Pincodes } from '../../locationdetails.model';
@@ -31,7 +31,7 @@ interface NgModelChangeEvent {
 export class DonordetailsComponent implements OnInit{
   donorinformation: DonorDetails;
   
-  submitted: boolean = false;
+  @Input()submitted: boolean = false;
 
   pincode: string[] = [];
 
@@ -45,7 +45,7 @@ export class DonordetailsComponent implements OnInit{
 
   filteredBloodGroups: any[] = [];
  
-  bloodgroup: any[] = [];
+  bloodgroups: any[] = [];
 
   locationDetails={
     countryname: '',
@@ -63,7 +63,7 @@ constructor(private router:Router,private adddonorser:AdddonorService,private lo
 ngOnInit(): void {
   this.locationdetails.getLocationDetails().subscribe((data)=> this.data = data);
   this.bloodgroupService.getBloodGroups().subscribe(data => {
-    this.bloodgroup = data;
+    this.bloodgroups = data;
   });
 }
 
@@ -126,14 +126,29 @@ onSelectCity(event:AutoCompleteSelectEvent){
 
 completeMethodBloodGroup(event:AutoCompleteCompleteEvent){
   let query = event.query.toLowerCase();
-  let filtered = this.bloodgroup
+  let filtered = this.bloodgroups
         .filter((group) => group.bloodgroup.toLowerCase().includes(query))
         .map((group) => ({ bloodgroup: group.bloodgroup }));
     this.filteredBloodGroups = filtered;
 }
 
 onSelectBloodGroup(event:AutoCompleteSelectEvent){
-  this.donorinformation.bloodgroup = event.value.bloodgroup;
+  this.donorinformation.bloodgroup = event.value;
+}
+
+isFormValid(): boolean {
+
+  return !!(this.donorinformation.donorname && this.donorinformation.bloodgroup && 
+            this.donorinformation.mobileno && this.donorinformation.pincode &&
+            this.donorinformation.countryname && this.donorinformation.statename && 
+            this.donorinformation.districtname && this.donorinformation.city);
+}
+
+focusFirstInvalidField(): void {
+  const invalidField = document.querySelector('.ng-invalid');
+  if (invalidField) {
+    (invalidField as HTMLElement).focus();
+  }
 }
 
 }

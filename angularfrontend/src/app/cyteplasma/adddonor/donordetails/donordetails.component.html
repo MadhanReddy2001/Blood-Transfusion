@@ -1,8 +1,8 @@
-<p-card >
+<p-card class="card">
     <ng-template pTemplate="title"> Donor Information </ng-template>
     <ng-template pTemplate="subtitle">Please enter details of donor</ng-template>
     <ng-template pTemplate="content">
-        <div >
+        <div class="p-fluid">
         <div class="details" >
             <label for="donorname"><strong>DonorName:</strong></label>
         <input
@@ -16,22 +16,23 @@
                 [(ngModel)]="donorinformation.donorname"
                 [ngClass]="{'ng-dirty':(donorname.invalid && submitted) ||(donorname.dirty && donorname.invalid)}"
                 >
-                <small *ngIf="(donorname.invalid && submitted) ||(donorname.dirty && donorname.invalid)" class="p-error">Donor Name is required</small>
         </div>
         <br>
         <div class="details">
-            <label for="bloodgroup"><strong>BloodGroup:</strong></label>
-            <p-autoComplete
-                id="bloodgroup"
-                field="bloodgroup"
-                placeholder="BloodGroup"
-                [suggestions]="filteredBloodGroups"
-                optionLabel="bloodgroup"
+            <label for="bloodgroups"><strong>Blood Group:</strong></label>
+            <p-dropdown
+                id="bloodgroups"
+                required
+                [options]="bloodgroups"
                 [(ngModel)]="donorinformation.bloodgroup"
-                (completeMethod)="completeMethodBloodGroup($event)"
-                (onSelect)="onSelectBloodGroup($event)"
-                />
+                placeholder="Select Blood Group"
+                optionLabel="bloodgroup"
+                optionValue="code"
+                (onChange)="onSelectBloodGroup($event)"
+                [ngClass]="{'ng-dirty':!donorinformation.bloodgroup && submitted}">
+            </p-dropdown>
         </div>
+        
         <br>
         <div class="details">
             <label for="mobileno"><strong>MobileNo:</strong></label>
@@ -46,7 +47,6 @@
                 [(ngModel)]="donorinformation.mobileno"
                 [ngClass]="{'ng-dirty':(mobileno.invalid && submitted) || (mobileno.dirty && mobileno.invalid)}"
             >
-               <small *ngIf="(mobileno.invalid && submitted) || (mobileno.dirty && mobileno.invalid)" class="p-error"> Please Enter Whatsupno</small>
         </div>
         <br>
         <div class="details">
@@ -66,10 +66,9 @@
                 (completeMethod)= "getPincodes($event)"
                 (onSelect)="onSelectPincode($event)"
                 (ngModelChange)="ngModelChangePincodes($event)"
-                [ngClass]="{'ng-dirty':(pincode.invalid && submitted) || (pincode.dirty && pincode.invalid)}"
+                [ngClass]="{'ng-invalid': !donorinformation.pincode && submitted, 'ng-dirty': submitted}"
             >
             </p-autoComplete>
-            <small *ngIf="(pincode.invalid && submitted) || (pincode.dirty && pincode.invalid)" class="p-error"> Please Enter Pincode</small>
         </div>
         <br>
         <div class="details">
@@ -85,6 +84,7 @@
                 autocomplete="on"
                 [lazy]="true"
                 [(ngModel)]="donorinformation.countryname"
+                [ngClass]="{'ng-invalid': !donorinformation.countryname && submitted, 'ng-dirty': submitted}"
                 >
             </p-autoComplete>
         </div>
@@ -102,6 +102,7 @@
             autocomplete="on"
             [lazy]="true"
             [(ngModel)]="donorinformation.statename"
+            [ngClass]="{'ng-invalid': !donorinformation.statename && submitted, 'ng-dirty': submitted}"
         ></p-autoComplete>
     </div>
     <br>
@@ -118,6 +119,7 @@
             autocomplete="on"
             [lazy]="true"
             [(ngModel)]="donorinformation.districtname"
+            [ngClass]="{'ng-invalid': !donorinformation.districtname && submitted, 'ng-dirty': submitted}"
         >
         </p-autoComplete>
     </div>
@@ -138,6 +140,7 @@
             [suggestions]="filteredcities"
             (completeMethod)="getCities($event)"
             (onSelect)="onSelectCity($event)"
+            [ngClass]="{'ng-invalid': !donorinformation.city && submitted, 'ng-dirty': submitted}"
         ></p-autoComplete>
     </div>
     </div>

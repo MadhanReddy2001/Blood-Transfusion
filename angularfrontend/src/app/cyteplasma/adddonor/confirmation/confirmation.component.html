@@ -1,89 +1,111 @@
-<p-card class="stepsdemo-content">
+<p-card class="stepsdemo-content" *ngIf="!isBloodDonationSuccess">
     <ng-template pTemplate="title">Confirmation</ng-template>
 
     <ng-template pTemplate="subtitle">Please check all the details</ng-template>
     
     <ng-template pTemplate="content">
 
-        <div class="field col-12">
+        <div class="p-fluid">
+        <div class="field col-12 ellipsis">
             <label for="donorname"><strong>DonorName:</strong></label>
-            {{confirminformation.donorname ? 
-                confirminformation.donorname: '-'}}
+                {{ confirminformation.donorname ? confirminformation.donorname : '-' }}
         </div>
         <br>
-        <div class="field col-12">
+        <div class="field col-12 ellipsis">
             <label for="bloodgroup"><strong>BloodGroup:</strong></label>
             {{confirminformation.bloodgroup ? 
                 confirminformation.bloodgroup: '-'}}
         </div>
         <br>
-        <div class="field col-12">
+        <div class="field col-12 ellipsis">
             <label for="mobileno"><strong>MobileNo:</strong></label>
             {{confirminformation.mobileno ? 
                 confirminformation.mobileno: '-'}}
         </div>
         <br>
-        <div class="field col-12">
+        <div class="field col-12 ellipsis">
             <label for="pincode"><strong>PinCode:</strong></label>
-             {{confirminformation.pincode ? 
+            {{confirminformation.pincode ? 
                 confirminformation.pincode: '-'}}
         </div>
         <br>
-        <div class="field col-12">
+        <div class="field col-12 ellipsis">
             <label for="countryname"><strong>Country:</strong></label>
             {{confirminformation.countryname ? 
                 confirminformation.countryname: '-'}}
         </div>
         <br>
-        <div class="field col-12">
+        <div class="field col-12 ellipsis">
             <label for="statename"><strong>State:</strong></label>
             {{confirminformation.statename ? confirminformation.statename: '-'}}
         </div>
         <br>
-        <div class="field col-12">
+        <div class="field col-12 ellipsis">
             <label for="districtname"><strong>District:</strong></label>
             {{confirminformation.districtname ? confirminformation.districtname: '-'}}
         </div>
         <br>
-        <div class="field col-12">
+        <div class="field col-12 ellipsis ">
             <label for="city"><strong>City:</strong></label>
             {{confirminformation.city ? confirminformation.city: '-'}}
         </div>
         <br>
-        <div class="field col-12">
+        <div class="field col-12 ellipsis">
             <label for="anemia"><strong>Anemia:</strong></label>
             {{confirminformation.anemia ? confirminformation.anemia: '-'}}
         </div>
         <br>
-        <div class="field col-12">
+        <div class="field col-12 ellipsis">
             <label for="alcohol"><strong>Alcohol:</strong></label>
             {{confirminformation.alcohol ? confirminformation.alcohol: '-'}}
         </div>
         <br>
-        <div class="field col-12">
+        <div class="field col-12 ellipsis">
             <label for="bp"><strong>BP:</strong></label>
             {{confirminformation.bp ? confirminformation.bp: '-'}}
         </div>
         <br>
-        <div class="field col-12">
+        <div class="field col-12 ellipsis">
             <label for="diabetic"><strong>Diabetic:</strong></label>
-             {{confirminformation.diabetic ? confirminformation.diabetic: '-'}}
+            {{confirminformation.diabetic ? confirminformation.diabetic: '-'}}
         </div>
         <br>
-        <div class="field col-12">
+        <div class="field col-12 ellipsis">
             <label for="hiv"><strong>HIV:</strong></label>
             {{confirminformation.hiv ? confirminformation.hiv: '-'}}
         </div>
         <br>
-        <div class="field col-12">
+        <div class="field col-12 ellipsis">
             <label for="medicaltreatment"><strong>Medicaltreatment:</strong></label>
             {{confirminformation.medicaltreatment ? confirminformation.medicaltreatment: '-'}}
         </div>
         <br>
-        <div class="field col-12">
+        <div class="field col-12 ellipsis">
             <label for="previousdonation"><strong>PreviousDonation:</strong></label>
             {{confirminformation.previousdonation ? confirminformation.previousdonation: '-'}}
         </div>
+        <br>
+        <div class="captcha-container">
+            <span class="captcha-text">{{ captchaText }}</span>
+            <img src="assets/images/refresh-catcha.png" alt="Refresh CAPTCHA" class="refresh-icon" (click)="generateNewCaptcha()"/>
+        </div>
+        <br>
+        <div class="field col-12">
+            <label for="captchaInput"><strong>CAPTCHA:</strong></label>
+            <input
+            id="captchaInput"
+            type="text"
+            required
+            [(ngModel)]="captchaInput"
+            #captchaInputRef="ngModel"
+            />
+            <div>
+            <small *ngIf="(captchaInputRef.invalid && captchaInputRef.touched) || submitted" class="error">
+                CAPTCHA is required.
+            </small>
+        </div>
+        </div>
+    </div>
     </ng-template>
 
     <ng-template pTemplate="footer">
@@ -93,4 +115,9 @@
     </ng-template>
 </p-card>
 
+<div *ngIf="isBloodDonationSuccess">
+    <img src="assets/images/registrationsuccesful.png" alt="Success" width="200px" />
+</div>
 
+
+<p-messages [(value)]="messages" [enableService]="false" />

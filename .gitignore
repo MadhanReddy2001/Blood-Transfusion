@@ -4,3 +4,4 @@ ${koduru.home}
 QuarkusBackend/${koduru.home}
 target
 QuarkusBackend/target
+.vs

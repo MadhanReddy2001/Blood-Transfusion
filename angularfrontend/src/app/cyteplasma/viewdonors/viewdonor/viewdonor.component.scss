@@ -1,0 +1,125 @@
+.donor-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.card {
+  flex: 1 1 250px; /* Grow to fill space, shrink as needed, base width of 250px */
+  max-width: 300px; /* Sets a maximum width for each card */
+  border-radius: 8px;
+  padding: 16px;
+  background: linear-gradient(
+  to right,
+  #ffcdd2 0%,    /* Light red */
+  #ff8a80 20%,   /* Coral */
+  #ffcc80 40%,   /* Light orange */
+  #ffe082 60%,   /* Light yellow */
+  #ffe5b4 80%,   /* Very light yellow */
+  #ffffff 100%   /* White */
+);
+
+  background-size: 100% 200%; /* Creates the striped effect */
+  animation: gradientAnimation 5s ease infinite; /* Optional animation for a smooth transition */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.2s; /* Smooth hover effect */
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.donor-name {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+}
+
+.blood-group {
+  background-color: #ff4d4d;
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.card-body {
+  margin-top: 10px;
+}
+
+.donor-details {
+  margin-bottom: 20px;
+}
+
+.contact {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.contact i {
+  margin-right: 8px;
+}
+
+.location {
+  font-size: 14px;
+  color: #888;
+}
+
+.medical-conditions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.condition-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
+}
+
+.condition-item i {
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.condition-item span {
+  font-size: 14px;
+}
+
+.strikethrough {
+  position: relative;
+  color: #555; /* Text color */
+  text-decoration: none; /* Disable default text-decoration */
+}
+
+.strikethrough::before {
+  content: '';
+  position: absolute;
+  top: 50%; /* Position the line in the middle of the text */
+  left: 0;
+  right: 0;
+  height: 2px; /* Thickness of the line */
+  background-color:  #ff6f61;; /* Line color */
+  pointer-events: none; /* Ensure the line doesn't interfere with text interaction */
+}
+
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");

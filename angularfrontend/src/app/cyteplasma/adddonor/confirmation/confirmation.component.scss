@@ -1,0 +1,44 @@
+.p-fluid .ellipsis {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.captcha-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+.captcha-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    background-color: #f0f0f0;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.refresh-icon {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.refresh-icon:hover {
+    transform: rotate(90deg);
+    opacity: 0.8;
+}
+
+.error {
+    color: red;
+    font-size: 0.875em;
+    margin-top: 0.5em;
+}

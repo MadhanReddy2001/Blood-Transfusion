@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DropdownChangeEvent } from 'primeng/dropdown';
@@ -23,6 +23,8 @@ export class HealthdetailsComponent {
     { label: 'Yes', value: 'Yes' },
     { label: 'No', value: 'No' }
   ];
+
+  @Input()submitted: boolean = false;
 
   healthinformation: DonorDetails;
 
@@ -57,5 +59,20 @@ export class HealthdetailsComponent {
 
   onChangePreviousDonation(event:DropdownChangeEvent){
     this.healthinformation.previousdonation = event.value;
+  }
+
+  isFormValid(): boolean {
+
+    return !!(this.healthinformation.alcohol && this.healthinformation.anemia &&
+              this.healthinformation.bp && this.healthinformation.diabetic &&
+              this.healthinformation.hiv && this.healthinformation.medicaltreatment
+    )
+  }
+  
+  focusFirstInvalidField(): void {
+    const invalidField = document.querySelector('.ng-invalid');
+    if (invalidField) {
+      (invalidField as HTMLElement).focus();
+    }
   }
 }

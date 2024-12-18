@@ -1,7 +1,8 @@
 export interface DonorDetails extends Address,HealthDetails {
     donorname: string,
     bloodgroup: string,
-    mobileno: string
+    mobileno: string,
+    status?: string
 }
 
 export interface Address {
@@ -21,3 +22,4 @@ export interface HealthDetails {
     medicaltreatment: string,
     previousdonation: string
 }
+

@@ -10,6 +10,7 @@
                     <label for="anemia"><strong>Anemia:</strong></label>
                     <p-dropdown
                         field="label"
+                        required
                         [options]="options"
                         [(ngModel)]="healthinformation.anemia"
                         optionLabel="label"
@@ -17,6 +18,7 @@
                         [showClear]="true"
                         (onChange)="onChangeAnemia($event)"
                         placeholder="Select a Option"
+                        [ngClass]="{'ng-dirty':!healthinformation.anemia && submitted}"
                         >
                     </p-dropdown>
                 </div>
@@ -25,6 +27,7 @@
                     <label for="alcohol"><strong>Alcohol:</strong></label>
                     <p-dropdown
                     field="label"
+                    required
                     [options]="options"
                     [(ngModel)]="healthinformation.alcohol"
                     optionLabel="label"
@@ -32,7 +35,8 @@
                     [showClear]="true"
                     (onChange)="onChangeAlcohol($event)"
                     placeholder="Select a Option"
-                            >
+                    [ngClass]="{'ng-dirty':!healthinformation.alcohol && submitted}"
+                    >
                         </p-dropdown>
                 </div>
                 <br>
@@ -40,6 +44,7 @@
                     <label for="bp"><strong>BP:</strong></label>
                     <p-dropdown
                     field="label"
+                    required
                     [options]="options"
                     [(ngModel)]="healthinformation.bp"
                     optionLabel="label"
@@ -47,6 +52,7 @@
                     [showClear]="true"
                     (onChange)="onChangeBP($event)"
                     placeholder="Select a Option"
+                    [ngClass]="{'ng-dirty':!healthinformation.bp && submitted}"
                         >
                         </p-dropdown>
                 </div>
@@ -55,6 +61,7 @@
                     <label for="diabetic"><strong>Diabetics:</strong></label>
                     <p-dropdown 
                     field="label"
+                    required
                     [options]="options"
                     [(ngModel)]="healthinformation.diabetic"
                     optionLabel="label"
@@ -62,6 +69,7 @@
                     [showClear]="true"
                     (onChange)="onChangeDiabetics($event)"
                     placeholder="Select a Option"
+                    [ngClass]="{'ng-dirty':!healthinformation.diabetic && submitted}"
                     >
                     </p-dropdown>
                 </div>
@@ -70,6 +78,7 @@
                     <label for="hiv"><strong>HIV:</strong></label>
                     <p-dropdown
                     field="label"
+                    required
                     [options]="options"
                     [(ngModel)]="healthinformation.hiv"
                     optionLabel="label"
@@ -77,6 +86,7 @@
                     [showClear]="true"
                     (onChange)="onChangeHIV($event)"
                     placeholder="Select a Option"
+                    [ngClass]="{'ng-dirty':!healthinformation.hiv && submitted}"
                         >
                         </p-dropdown>
                 </div>
@@ -85,6 +95,7 @@
                     <label for="medicaltreatment"><strong>Medicaltreatment:</strong></label>
                     <p-dropdown
                     field="label"
+                    required
                     [options]="options"
                     [(ngModel)]="healthinformation.medicaltreatment"
                     optionLabel="label"
@@ -92,6 +103,7 @@
                     [showClear]="true"
                     (onChange)="onChangeMedicalTreatment($event)"
                     placeholder="Select a Option"
+                    [ngClass]="{'ng-dirty':!healthinformation.medicaltreatment && submitted}"
                         >
                         </p-dropdown>
                 </div>
@@ -100,6 +112,7 @@
                     <label for="previousdonation"><strong>PreviousDonation:</strong></label>
                     <p-dropdown 
                     field="label"
+                    required
                     [options]="options"
                     [(ngModel)]="healthinformation.previousdonation"
                     optionLabel="label"
@@ -107,6 +120,7 @@
                     [showClear]="true"
                     (onChange)="onChangePreviousDonation($event)"
                     placeholder="Select a Option"
+                    [ngClass]="{'ng-dirty':!healthinformation.previousdonation && submitted}"
                         >
                         </p-dropdown>
                 </div>

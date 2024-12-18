@@ -1,6 +1,8 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { MessageService } from 'primeng/api';
+import { MessagesModule } from 'primeng/messages';
 import { PrimengModule } from '../primeng/primeng.module';
 import { AdddonorComponent } from './adddonor/adddonor.component';
 import { ConfirmationComponent } from './adddonor/confirmation/confirmation.component';
@@ -11,6 +13,7 @@ import { BloodmenuComponent } from './bloodmenu/bloodmenu.component';
 import { BloodrequestComponent } from "./bloodrequests/bloodrequest/bloodrequest.component";
 import { CyteplasmaRoutingModule } from './cyteplasma-routing.module';
 import { CheckeligibilityComponent } from "./eligibility/checkeligibility/checkeligibility.component";
+import { SuccesimageComponent } from './messagecomponent/succesimage/succesimage.component';
 import { FilterPincodePipePipe } from './pipes/filter-pincode-pipe.pipe';
 import { ViewdonorComponent } from "./viewdonors/viewdonor/viewdonor.component";
 
@@ -22,19 +25,22 @@ import { ViewdonorComponent } from "./viewdonors/viewdonor/viewdonor.component";
     ConfirmationComponent,
     DonordetailsComponent,
     HealthdetailsComponent,
-    BlooddataComponent
+    BlooddataComponent,
+    ViewdonorComponent,
+    SuccesimageComponent
   ],
   imports: [
     CommonModule,
     CyteplasmaRoutingModule,
     PrimengModule,
-    ViewdonorComponent,
     CheckeligibilityComponent,
     BloodrequestComponent
 ],
   providers: [
   FilterPincodePipePipe,
-  DatePipe
+  DatePipe,
+  MessageService,
+  MessagesModule
   ]
 })
 export class CyteplasmaModule { }

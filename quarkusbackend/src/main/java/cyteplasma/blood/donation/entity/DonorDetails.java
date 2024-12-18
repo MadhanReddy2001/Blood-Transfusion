@@ -16,49 +16,49 @@ public class DonorDetails {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "donordetails_id")
     private Long Id;
 
-    @Column(name = "donorname")
+    @Column(name = "donorname",nullable = false)
     private String donorname;
 
-    @Column(name = "bloodgroup")
+    @Column(name = "bloodgroup",nullable = false)
     private String bloodgroup;
 
-    @Column(name = "mobileno")
+    @Column(name = "mobileno",nullable = false)
     private String mobileno;
 
-    @Column(name = "countryname")
+    @Column(name = "countryname",nullable = false)
     private String countryname;
 
-    @Column(name = "statename")
+    @Column(name = "statename",nullable = false)
     private String statename;
 
-    @Column(name = "districtname")
+    @Column(name = "districtname",nullable = false)
     private String districtname;
 
-    @Column(name = "city")
+    @Column(name = "city",nullable = false)
     private String city;
 
-    @Column(name = "pincode")
+    @Column(name = "pincode",nullable = false)
     private String pincode;
 
-    @Column(name = "anemia")
+    @Column(name = "anemia",nullable = false)
     private String anemia;
 
-    @Column(name = "alcohol")
+    @Column(name = "alcohol",nullable = false)
     private String alcohol;
 
-    @Column(name = "bp")
+    @Column(name = "bp",nullable = false)
     private String bp;
 
-    @Column(name = "diabetic")
+    @Column(name = "diabetic",nullable = false)
     private String diabetic;
 
-    @Column(name = "hiv")
+    @Column(name = "hiv",nullable = false)
     private String hiv;
 
-    @Column(name = "medicaltreatment")
+    @Column(name = "medicaltreatment",nullable = false)
     private String medicaltreatment;
 
-    @Column(name = "previousdonation")
+    @Column(name = "previousdonation",nullable = false)
     private String previousdonation;
 
     public Long getId() {

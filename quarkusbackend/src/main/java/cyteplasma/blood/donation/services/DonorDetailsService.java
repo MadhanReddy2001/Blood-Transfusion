@@ -24,7 +24,7 @@ public class DonorDetailsService {
         donorDetails.setMobileno(donorDetailsDTO.getMobileno());
         donorDetails.setCountryname(donorDetailsDTO.getCountryname());
         donorDetails.setStatename(donorDetailsDTO.getStatename());
-        donorDetails.setDistrictname(donorDetails.getDistrictname());
+        donorDetails.setDistrictname(donorDetailsDTO.getDistrictname());
         donorDetails.setCity(donorDetailsDTO.getCity());
         donorDetails.setPincode(donorDetailsDTO.getPincode());
         donorDetails.setAlcohol(donorDetailsDTO.getAlcohol());
@@ -69,5 +69,12 @@ public class DonorDetailsService {
     @Transactional
     public Map<String, Long> getCountByBloodGroups() {
         return donorDetailsRepository.getCountByBloodGroups();
+    }
+
+    @Transactional
+    public List<DonorDetails> searchDonors(String bloodgroup, String countryname, String statename, String city) {
+
+        List<DonorDetails> findDonorDetails = donorDetailsRepository.findDonorsByFilters(bloodgroup, countryname, statename, city);
+        return  findDonorDetails;
     }
 }

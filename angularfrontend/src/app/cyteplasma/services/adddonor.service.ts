@@ -8,7 +8,7 @@ import { DonorDetails } from '../donordetails.model';
 })
 export class AdddonorService {
 
-  private donorDetails: DonorDetails = {
+  public donorDetails: DonorDetails = {
     donorname: '',
     bloodgroup: '',
     mobileno: '',
@@ -52,6 +52,11 @@ export class AdddonorService {
   saveDonorDetails(donorDetails: any): Observable<any> {
     const url = `${this.baseURL}/adddonor`;
     return this.http.post(url,donorDetails,this.httpOptions);
+  }
+
+  getAllDonorDetails(): Observable<any> {
+    const url = `${this.baseURL}/viewdonor`;
+    return this.http.get(url,this.httpOptions);
   }
 
 }
